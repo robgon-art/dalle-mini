@@ -19,6 +19,7 @@ class PretrainedFromWandbMixin:
                 if wandb.run is not None:
                     artifact = wandb.run.use_artifact(pretrained_model_name_or_path)
                 else:
+                    run = wandb.init(anonymous="must",project="temp")
                     artifact = wandb.Api().artifact(pretrained_model_name_or_path)
                 pretrained_model_name_or_path = artifact.download(tmp_dir)
 
